@@ -1,0 +1,14 @@
+{
+  "name": "kitaoodori-nazotoki-hints-2026",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "node scripts/build.js",
+    "test": "node tests/site-data.test.js && node tests/app.test.js"
+  },
+  "devDependencies": {
+    "jsdom": "^29.1.1",
+    "vite": "^7.2.4"
+  }
+}

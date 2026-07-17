@@ -1,301 +1,528 @@
 /* =========================================================
- * 謎解きヒントサイト スタイルシート（スマホファースト）
+ * 北大通謎解きさんぽ2026 ヒントページ
+ * スマートフォン優先・入れ子アコーディオンUI
  * ======================================================= */
 
 :root {
-  --bg: #f4f1ea;
-  --surface: #ffffff;
-  --ink: #2b2620;
-  --ink-sub: #6f675c;
-  --accent: #1f3a5f;        /* 濃紺：見出し・ボタン */
-  --accent-light: #eef2f8;
-  --gold: #b98a2f;          /* 金：アクセント線 */
-  --answer: #a03232;        /* 答えボタンの赤 */
-  --answer-bg: #fbf0f0;
-  --border: #ddd6ca;
-  --radius: 12px;
-  --shadow: 0 2px 8px rgba(43, 38, 32, 0.08);
+  --navy-950: #10283d;
+  --navy-900: #18334f;
+  --navy-800: #244867;
+  --navy-100: #e9f0f5;
+  --paper: #fffdf8;
+  --paper-deep: #f3eee3;
+  --ink: #202a31;
+  --ink-soft: #5d6870;
+  --gold: #c29235;
+  --gold-soft: #f6e8c6;
+  --red: #9d3d3d;
+  --red-soft: #fff0ef;
+  --line: #d8d4ca;
+  --white: #ffffff;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+  --shadow: 0 8px 24px rgba(16, 40, 61, 0.09);
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
-html { -webkit-text-size-adjust: 100%; }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
 
 body {
   margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at 15% 4%, rgba(194, 146, 53, 0.12), transparent 27rem),
+    linear-gradient(180deg, #f9f7f1 0, var(--paper-deep) 100%);
+  color: var(--ink);
   font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic",
     "Noto Sans JP", sans-serif;
-  background: var(--bg);
-  color: var(--ink);
-  line-height: 1.8;
   font-size: 16px;
+  line-height: 1.75;
 }
 
-#app {
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 0 16px 96px;
-}
-
-/* ---------- ヘッダー ---------- */
-.site-header {
-  text-align: center;
-  padding: 32px 8px 20px;
-  border-bottom: 2px solid var(--gold);
-  margin-bottom: 20px;
-}
-
-.site-header .site-title {
-  margin: 0;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--accent);
-  letter-spacing: 0.06em;
-}
-
-.site-header .site-subtitle {
-  margin: 6px 0 0;
-  font-size: 0.95rem;
-  color: var(--ink-sub);
-  letter-spacing: 0.3em;
-}
-
-/* ---------- 注意書き ---------- */
-.notice {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 14px 16px;
-  margin: 0 0 24px;
-  box-shadow: var(--shadow);
-}
-
-.notice ul {
-  margin: 0;
-  padding-left: 1.3em;
-}
-
-.notice li {
-  font-size: 0.88rem;
-  color: var(--ink-sub);
-  margin: 4px 0;
-}
-
-/* ---------- 目次（章・謎へのリンク） ---------- */
-.toc {
-  margin-bottom: 32px;
-}
-
-.toc-chapter-title {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--accent);
-  margin: 16px 0 8px;
-}
-
-.toc-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.toc-list a {
-  display: inline-block;
-  padding: 10px 16px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  color: var(--accent);
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 600;
-  box-shadow: var(--shadow);
-}
-
-.toc-list a:active {
-  background: var(--accent-light);
-}
-
-/* ---------- 章 ---------- */
-.chapter {
-  margin-bottom: 40px;
-  scroll-margin-top: 16px;
-}
-
-.chapter-title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #fff;
-  background: var(--accent);
-  border-radius: var(--radius);
-  padding: 10px 16px;
-  margin: 0 0 16px;
-  letter-spacing: 0.04em;
-}
-
-/* ---------- 謎カード ---------- */
-.puzzle {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 18px 16px;
-  margin-bottom: 20px;
-  scroll-margin-top: 16px;
-}
-
-.puzzle-title {
-  margin: 0 0 4px;
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--accent);
-  padding-left: 10px;
-  border-left: 4px solid var(--gold);
-}
-
-.puzzle-description {
-  margin: 8px 0 0;
-  font-size: 0.88rem;
-  color: var(--ink-sub);
-}
-
-/* ---------- ヒント／答えの開閉ブロック ---------- */
-.reveal {
-  margin-top: 12px;
-}
-
-.reveal-button {
-  display: block;
-  width: 100%;
-  padding: 14px 16px;
-  font-size: 1rem;
-  font-weight: 700;
-  font-family: inherit;
-  color: var(--accent);
-  background: var(--accent-light);
-  border: 1.5px solid var(--accent);
-  border-radius: var(--radius);
-  cursor: pointer;
-  text-align: center;
-  letter-spacing: 0.05em;
+button,
+a {
   -webkit-tap-highlight-color: transparent;
 }
 
-.reveal-button:active { opacity: 0.7; }
-
-.reveal-button .chevron { margin-left: 6px; font-size: 0.8em; }
-
-/* 答えボタンは赤系 */
-.reveal--answer .reveal-button {
-  color: var(--answer);
-  background: var(--answer-bg);
-  border-color: var(--answer);
+button {
+  font: inherit;
 }
 
-/* 答えの誤タップ防止：1回目タップ後の確認状態 */
-.reveal--answer .reveal-button.is-confirming {
-  color: #fff;
-  background: var(--answer);
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid #2676b8;
+  outline-offset: 3px;
 }
 
-/* 開いた後のボタン */
-.reveal-button.is-open {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+[hidden] {
+  display: none !important;
 }
 
-/* ヒント本文 */
-.reveal-body {
-  display: none;
-  padding: 14px 16px;
-  border: 1.5px solid var(--accent);
-  border-top: none;
-  border-radius: 0 0 var(--radius) var(--radius);
-  background: #fff;
+#app {
+  width: min(100%, 720px);
+  margin: 0 auto;
+  padding: 0 16px 104px;
+}
+
+/* ---------- ヘッダー ---------- */
+
+.site-header {
+  position: relative;
+  overflow: hidden;
+  margin: 0 -16px 22px;
+  padding: 38px 24px 32px;
+  border-radius: 0 0 30px 30px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.06) 25%, transparent 25%) 0 0 / 22px 22px,
+    linear-gradient(135deg, var(--navy-950), var(--navy-800));
+  color: var(--white);
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.site-header::after {
+  position: absolute;
+  right: -42px;
+  bottom: -52px;
+  width: 150px;
+  height: 150px;
+  border: 2px solid rgba(255, 255, 255, 0.13);
+  border-radius: 50%;
+  content: "";
+}
+
+.site-eyebrow {
+  margin: 0 0 7px;
+  color: #f3d898;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+.site-title {
+  max-width: 18em;
+  margin: 0 auto;
+  font-size: clamp(1.42rem, 6vw, 2.05rem);
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+}
+
+.page-title {
+  display: inline-block;
+  margin: 18px 0 0;
+  padding: 5px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.site-lead {
+  max-width: 33rem;
+  margin: 14px auto 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.9rem;
+}
+
+/* ---------- 章移動 ---------- */
+
+.page-navigation {
+  margin: 0 0 20px;
+}
+
+.page-navigation--bottom {
+  margin: 28px 0 0;
+}
+
+.page-navigation-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 54px;
+  padding: 12px 16px;
+  border: 1px solid var(--gold);
+  border-radius: var(--radius-md);
+  background: var(--gold-soft);
+  color: var(--navy-950);
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.page-navigation-link:hover {
+  background: #f9e1a8;
+}
+
+.page-navigation-arrow {
+  flex: 0 0 auto;
+  margin-left: 12px;
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+/* ---------- 注意書き ---------- */
+
+.notice {
+  margin: 0 0 24px;
+  padding: 18px 18px 16px;
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--gold);
+  border-radius: var(--radius-md);
+  background: rgba(255, 253, 248, 0.92);
+  box-shadow: 0 4px 16px rgba(16, 40, 61, 0.05);
+}
+
+.notice-title {
+  margin: 0 0 8px;
+  color: var(--navy-900);
   font-size: 0.95rem;
+}
+
+.notice-list {
+  margin: 0;
+  padding-left: 1.25em;
+}
+
+.notice-list li {
+  margin: 3px 0;
+  color: var(--ink-soft);
+  font-size: 0.84rem;
+}
+
+/* ---------- 共通アコーディオン ---------- */
+
+.story-list {
+  display: grid;
+  gap: 14px;
+}
+
+.disclosure {
+  min-width: 0;
+}
+
+.disclosure-button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 54px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--paper);
+  color: var(--navy-900);
+  cursor: pointer;
+  font-weight: 700;
+  text-align: left;
+  transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+}
+
+.disclosure-button:hover {
+  border-color: #aeb8bf;
+  background: var(--white);
+}
+
+.disclosure-button:active {
+  transform: translateY(1px);
+}
+
+.disclosure-title {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.disclosure-chevron {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  border-radius: 50%;
+  background: var(--navy-100);
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.disclosure-panel {
+  border: 1px solid var(--line);
+  border-top: 0;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  background: var(--paper);
+}
+
+.disclosure.is-open > .disclosure-button {
+  border-bottom-color: transparent;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+/* ---------- 物語上の大項目 ---------- */
+
+.story-block {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  scroll-margin-top: 16px;
+}
+
+.story-block > .disclosure-button {
+  min-height: 86px;
+  padding: 12px 16px;
+  border: 1px solid rgba(24, 51, 79, 0.28);
+  border-left: 5px solid var(--gold);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 253, 248, 0.98);
+  font-size: 1.05rem;
+}
+
+.story-block > .disclosure-panel {
+  padding: 14px;
+  border-color: rgba(24, 51, 79, 0.22);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.story-block.is-open > .disclosure-button {
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background: var(--white);
+}
+
+.story-answer > .disclosure-button {
+  border-left-color: var(--red);
+  background: var(--red-soft);
+  color: #782c2c;
+}
+
+.story-answer > .disclosure-button .disclosure-chevron {
+  background: #f7d8d5;
+}
+
+.story-answer > .disclosure-panel {
+  border-color: rgba(157, 61, 61, 0.3);
+}
+
+/* ---------- 入れ子のサイコロ謎 ---------- */
+
+.nested-puzzle + .nested-puzzle {
+  margin-top: 10px;
+}
+
+.nested-puzzle > .disclosure-button {
+  min-height: 66px;
+  background: var(--navy-100);
+  border-color: #bdcbd6;
+}
+
+.nested-puzzle > .disclosure-panel {
+  padding: 12px;
+  border-color: #bdcbd6;
+  background: #f9fbfc;
+}
+
+/* ---------- ヒント・答え ---------- */
+
+.hint-reveal + .hint-reveal,
+.hint-reveal + .answer-reveal,
+.answer-reveal + .hint-reveal {
+  margin-top: 9px;
+}
+
+.hint-reveal > .disclosure-button,
+.answer-reveal > .disclosure-button {
+  min-height: 50px;
+  padding: 10px 13px;
+  border-radius: var(--radius-sm);
+  font-size: 0.92rem;
+}
+
+.hint-reveal > .disclosure-button {
+  border-color: #b9c7d2;
+  background: var(--white);
+}
+
+.hint-reveal > .disclosure-panel,
+.answer-reveal > .disclosure-panel {
+  padding: 14px;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+}
+
+.hint-reveal.is-open > .disclosure-button,
+.answer-reveal.is-open > .disclosure-button {
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+
+.answer-reveal > .disclosure-button {
+  border-color: #cf8e89;
+  background: var(--red-soft);
+  color: var(--red);
+}
+
+.answer-reveal > .disclosure-button .disclosure-chevron {
+  background: #f7d8d5;
+}
+
+.answer-reveal > .disclosure-button.is-confirming {
+  background: var(--red);
+  color: var(--white);
+}
+
+.answer-reveal > .disclosure-button.is-confirming .disclosure-chevron {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.answer-reveal > .disclosure-panel {
+  border-color: #cf8e89;
+  background: #fffafa;
+}
+
+.hint-text,
+.answer-text {
+  margin: 0;
   white-space: pre-line;
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
 }
 
-.reveal--answer .reveal-body {
-  border-color: var(--answer);
-  background: #fff;
+.hint-text {
+  color: #33434e;
+  font-size: 0.94rem;
 }
 
-.reveal.is-open .reveal-body { display: block; }
+.answer-text {
+  color: #772b2b;
+  font-size: 1.08rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
 
-.reveal-body img {
+/* ---------- 画像・画像プレースホルダー ---------- */
+
+.asset {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  overflow: hidden;
+  color: var(--ink-soft);
+  vertical-align: middle;
+}
+
+.asset img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.asset--large {
+  width: 58px;
+  height: 58px;
+  margin-right: 13px;
+  border-radius: 13px;
+}
+
+.asset--small {
+  width: 42px;
+  height: 42px;
+  margin-right: 11px;
+  border-radius: 10px;
+}
+
+.asset--inline {
+  min-width: 3.9em;
+  min-height: 1.8em;
+  margin: 0 0.18em;
+  border-radius: 6px;
+  transform: translateY(0.12em);
+}
+
+.asset--inline img {
+  width: auto;
+  max-width: 4.5em;
+  height: 1.65em;
+}
+
+.asset-placeholder {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border: 1.5px dashed #9caab4;
+  border-radius: inherit;
+  background:
+    repeating-linear-gradient(-45deg, #f7f9fa, #f7f9fa 7px, #edf1f3 7px, #edf1f3 14px);
+  text-align: center;
+}
+
+.asset-placeholder-label {
+  font-size: 0.63rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.asset-placeholder-path {
   display: block;
   max-width: 100%;
-  height: auto;
-  margin: 10px auto 0;
-  border-radius: 8px;
+  margin-top: 2px;
+  overflow: hidden;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.42rem;
+  line-height: 1.15;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.answer-note {
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px dashed var(--border);
-  font-size: 0.88rem;
-  color: var(--ink-sub);
+.asset--inline .asset-placeholder {
+  display: inline-flex;
+  min-height: 1.8em;
+  padding: 1px 5px;
+  flex-direction: row;
 }
 
-.answer-note::before {
-  content: "解説";
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #fff;
-  background: var(--gold);
-  border-radius: 4px;
-  padding: 1px 8px;
-  margin-right: 8px;
+.asset--inline .asset-placeholder-label {
+  font-size: 0.72em;
+  white-space: nowrap;
 }
 
-/* ---------- ナビゲーションリンク ---------- */
-.back-links {
-  text-align: center;
-  margin: 8px 0 0;
-}
+/* ---------- フッター・ページ上部ボタン ---------- */
 
-.back-links a {
-  display: inline-block;
-  margin: 0 10px;
-  font-size: 0.85rem;
-  color: var(--ink-sub);
-  text-decoration: underline;
-}
-
-/* ---------- フッター ---------- */
 .site-footer {
+  margin-top: 42px;
+  padding: 24px 0 0;
+  border-top: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: 0.76rem;
   text-align: center;
-  font-size: 0.78rem;
-  color: var(--ink-sub);
-  border-top: 1px solid var(--border);
-  padding-top: 20px;
-  margin-top: 48px;
 }
 
-/* ---------- ページ上へ戻るボタン ---------- */
 .to-top {
   position: fixed;
-  right: 16px;
-  bottom: 16px;
+  z-index: 10;
+  right: max(16px, calc((100vw - 720px) / 2 + 16px));
+  bottom: 18px;
+  display: grid;
   width: 48px;
   height: 48px;
+  place-items: center;
+  border: 0;
   border-radius: 50%;
-  border: none;
-  background: var(--accent);
-  color: #fff;
-  font-size: 1.1rem;
-  box-shadow: 0 3px 10px rgba(43, 38, 32, 0.3);
+  background: var(--navy-900);
+  box-shadow: 0 5px 18px rgba(16, 40, 61, 0.3);
+  color: var(--white);
   cursor: pointer;
+  font-size: 1.25rem;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.25s;
+  transition: opacity 180ms ease;
 }
 
 .to-top.is-visible {
@@ -304,13 +531,50 @@ body {
 }
 
 .noscript {
+  margin: 60px auto;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--paper);
+  color: var(--ink-soft);
   text-align: center;
-  padding: 40px 16px;
-  color: var(--ink-sub);
 }
 
-/* ---------- タブレット以上 ---------- */
-@media (min-width: 600px) {
-  body { font-size: 17px; }
-  .site-header .site-title { font-size: 1.8rem; }
+@media (min-width: 620px) {
+  #app {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  .site-header {
+    margin-right: -24px;
+    margin-left: -24px;
+    padding: 48px 40px 38px;
+  }
+
+  .story-list {
+    gap: 18px;
+  }
+
+  .story-block > .disclosure-button {
+    min-height: 96px;
+    padding: 15px 20px;
+    font-size: 1.12rem;
+  }
+
+  .story-block > .disclosure-panel {
+    padding: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
 }
