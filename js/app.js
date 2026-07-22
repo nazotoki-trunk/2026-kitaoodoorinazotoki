@@ -52,7 +52,6 @@
 
     image.src = asset.src;
     image.alt = asset.alt;
-    image.loading = "lazy";
     image.hidden = true;
 
     placeholder.appendChild(label);
