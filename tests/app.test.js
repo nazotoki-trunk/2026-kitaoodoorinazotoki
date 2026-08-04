@@ -25,12 +25,21 @@ function directButton(document, id) {
   return document.querySelector("#" + id + " > .disclosure-button");
 }
 
+function assertNestedPuzzle(document, groupId, puzzleId) {
+  var panel = document.querySelector("#" + groupId + " > .disclosure-panel");
+  assert.ok(panel.querySelector(":scope > #" + puzzleId), puzzleId + "が" + groupId + "の中にあること");
+  assert.equal(document.querySelector(".story-list > #" + puzzleId), null, puzzleId + "が最上位にないこと");
+}
+
 var chapter1 = renderPage("index.html");
 var chapter1Document = chapter1.window.document;
 
 assert.equal(chapter1Document.querySelector(".page-title").textContent, "第一章");
-assert.equal(chapter1Document.querySelectorAll(".story-list > .story-block").length, 7);
+assert.equal(chapter1Document.querySelectorAll(".story-list > .story-block").length, 4);
 assert.equal(chapter1Document.querySelector(".page-navigation-link").getAttribute("href"), "chapter2.html");
+assertNestedPuzzle(chapter1Document, "chapter1-kasa", "chapter1-star1");
+assertNestedPuzzle(chapter1Document, "chapter1-kikyu", "chapter1-star2");
+assertNestedPuzzle(chapter1Document, "chapter1-ringo", "chapter1-star3");
 assert.ok(chapter1Document.querySelectorAll(".asset-placeholder").length > 0, "未配置画像にはプレースホルダーを表示すること");
 
 var kasaButton = directButton(chapter1Document, "chapter1-kasa");
@@ -41,7 +50,7 @@ assert.equal(kasaPanel.hidden, true);
 kasaButton.click();
 assert.equal(kasaButton.getAttribute("aria-expanded"), "true");
 assert.equal(kasaPanel.hidden, false);
-assert.equal(kasaPanel.querySelectorAll(":scope > .nested-puzzle").length, 3);
+assert.equal(kasaPanel.querySelectorAll(":scope > .nested-puzzle").length, 4);
 
 var dice1 = chapter1Document.getElementById("chapter1-kasa-dice1");
 var dice1Button = dice1.querySelector(":scope > .disclosure-button");
@@ -70,8 +79,11 @@ var chapter2 = renderPage("chapter2.html");
 var chapter2Document = chapter2.window.document;
 
 assert.equal(chapter2Document.querySelector(".page-title").textContent, "第二章・最終章");
-assert.equal(chapter2Document.querySelectorAll(".story-list > .story-block").length, 8);
+assert.equal(chapter2Document.querySelectorAll(".story-list > .story-block").length, 5);
 assert.equal(chapter2Document.querySelector(".page-navigation-link").getAttribute("href"), "index.html");
+assertNestedPuzzle(chapter2Document, "chapter2-jitensha", "chapter2-star1");
+assertNestedPuzzle(chapter2Document, "chapter2-usagi", "chapter2-star2");
+assertNestedPuzzle(chapter2Document, "chapter2-ie", "chapter2-star3");
 
 var finalButton = directButton(chapter2Document, "final-chapter");
 var finalPanel = chapter2Document.querySelector("#final-chapter > .disclosure-panel");
