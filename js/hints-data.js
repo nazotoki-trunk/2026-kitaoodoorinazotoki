@@ -138,17 +138,16 @@ var SITE_DATA = {
               ],
               answer: "となり",
             },
+            {
+              id: "chapter1-star1",
+              title: "星1の謎",
+              icon: "star-1",
+              hints: [
+                "今までの答え「さんぽ」「くすり」「となり」をマスに埋めて、水色の矢印が通る文字を読もう。",
+              ],
+              answer: "ぽすと",
+            },
           ],
-        },
-        {
-          kind: "standalone",
-          id: "chapter1-star1",
-          title: "星1の謎",
-          icon: "star-1",
-          hints: [
-            "今までの答え「さんぽ」「くすり」「となり」をマスに埋めて、水色の矢印が通る文字を読もう。",
-          ],
-          answer: "ぽすと",
         },
         {
           kind: "group",
@@ -188,17 +187,16 @@ var SITE_DATA = {
               ],
               answer: "みなみ",
             },
+            {
+              id: "chapter1-star2",
+              title: "星2の謎",
+              icon: "star-2",
+              hints: [
+                "「とうきび」「うきわ」「みなみ」から、2回以上使われている文字を消して読もう。",
+              ],
+              answer: "なわとび",
+            },
           ],
-        },
-        {
-          kind: "standalone",
-          id: "chapter1-star2",
-          title: "星2の謎",
-          icon: "star-2",
-          hints: [
-            "「とうきび」「うきわ」「みなみ」から、2回以上使われている文字を消して読もう。",
-          ],
-          answer: "なわとび",
         },
         {
           kind: "group",
@@ -226,18 +224,17 @@ var SITE_DATA = {
               ],
               answer: "つち",
             },
+            {
+              id: "chapter1-star3",
+              title: "星3の謎",
+              icon: "star-3",
+              hints: [
+                "[[asset:dice-2]]が半分に分かれて、[[asset:dice-1]]を挟んでいるね。",
+                "[[asset:dice-2]]の答え「つち」を半分に分けて、[[asset:dice-1]]の答え「いた」を挟もう。",
+              ],
+              answer: "ついたち",
+            },
           ],
-        },
-        {
-          kind: "standalone",
-          id: "chapter1-star3",
-          title: "星3の謎",
-          icon: "star-3",
-          hints: [
-            "[[asset:dice-2]]が半分に分かれて、[[asset:dice-1]]を挟んでいるね。",
-            "[[asset:dice-2]]の答え「つち」を半分に分けて、[[asset:dice-1]]の答え「いた」を挟もう。",
-          ],
-          answer: "ついたち",
         },
         {
           kind: "answer",
@@ -295,21 +292,20 @@ var SITE_DATA = {
               ],
               answer: "ぶり",
             },
+            {
+              id: "chapter2-star1",
+              title: "星1の謎",
+              icon: "star-1",
+              hints: [
+                "今までの答えの「かうんと」「ぶり」「ようき」をマスに埋めよう。",
+                "イラストが描かれた茶色の矢印に見覚えはないだろうか？",
+                "「たぬき」「とりい」など、描かれたイラストを文字列から消すときに使われるマークだったね。では今回は何のイラストが描かれているだろうか？",
+                "「ようなし」と「かぶとむし」のイラストが描かれているね。",
+                "「“よう”無し」「“かぶと”無視」なので、文字列から「よ、う、か、ぶ、と」を取り除こう。",
+              ],
+              answer: "きりん",
+            },
           ],
-        },
-        {
-          kind: "standalone",
-          id: "chapter2-star1",
-          title: "星1の謎",
-          icon: "star-1",
-          hints: [
-            "今までの答えの「かうんと」「ぶり」「ようき」をマスに埋めよう。",
-            "イラストが描かれた茶色の矢印に見覚えはないだろうか？",
-            "「たぬき」「とりい」など、描かれたイラストを文字列から消すときに使われるマークだったね。では今回は何のイラストが描かれているだろうか？",
-            "「ようなし」と「かぶとむし」のイラストが描かれているね。",
-            "「“よう”無し」「“かぶと”無視」なので、文字列から「よ、う、か、ぶ、と」を取り除こう。",
-          ],
-          answer: "きりん",
         },
         {
           kind: "group",
@@ -337,17 +333,16 @@ var SITE_DATA = {
               ],
               answer: "ん",
             },
+            {
+              id: "chapter2-star2",
+              title: "星2の謎",
+              icon: "star-2",
+              hints: [
+                "今までの答え「ほ」「ん」をそのまま読もう。",
+              ],
+              answer: "ほん",
+            },
           ],
-        },
-        {
-          kind: "standalone",
-          id: "chapter2-star2",
-          title: "星2の謎",
-          icon: "star-2",
-          hints: [
-            "今までの答え「ほ」「ん」をそのまま読もう。",
-          ],
-          answer: "ほん",
         },
         {
           kind: "group",
@@ -391,18 +386,17 @@ var SITE_DATA = {
               ],
               answer: "だいどころ",
             },
+            {
+              id: "chapter2-star3",
+              title: "星3の謎",
+              icon: "star-3",
+              hints: [
+                "今までの答えの「まちなみ」「つくし」「だいどころ」をマスに埋めよう。",
+                "A→B→Cの順番にマスを読もう。",
+              ],
+              answer: "まいく",
+            },
           ],
-        },
-        {
-          kind: "standalone",
-          id: "chapter2-star3",
-          title: "星3の謎",
-          icon: "star-3",
-          hints: [
-            "今までの答えの「まちなみ」「つくし」「だいどころ」をマスに埋めよう。",
-            "A→B→Cの順番にマスを読もう。",
-          ],
-          answer: "まいく",
         },
         {
           kind: "answer",
